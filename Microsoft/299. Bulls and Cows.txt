@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int n = secret.size();
+        vector<int> bull(10001,0);
+        map<int,int> mp;
+        int bullSum=0,cowSum=0;
+        for(int i=0;i<n;i++){
+            mp[guess[i]-'0']++;
+        }
+        for(int i=0;i<n;i++){
+            if(secret[i]==guess[i]){
+                mp[secret[i]-'0']--;
+                bullSum++;
+            }
+        }
+        for(int i=0;i<n;i++){
+            auto it3 = mp.find(secret[i]-'0');
+            if(secret[i]!=guess[i] && it3!=mp.end() && it3->second !=0){
+                mp[secret[i]-'0']--;
+                cowSum++;
+            }
+        }
+        string ans,s1,s2;
+        s1 = to_string(bullSum);
+        s2 = to_string(cowSum);
+        ans+=(s1);
+        ans.push_back('A');
+        ans+=(s2);
+        ans.push_back('B');
+        return ans;
+    }
+};

@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> sum;
+        int val1,val2,calc;
+        for(auto it:tokens){
+            if(it == "+"){
+                val1 = sum.top();
+                sum.pop();
+                val2 = sum.top();
+                sum.pop();
+                calc = val1+val2;
+                sum.push(calc);
+            }else if(it == "-"){
+                val1 = sum.top();
+                sum.pop();
+                val2 = sum.top();
+                sum.pop();
+                calc = val2-val1;
+                sum.push(calc);
+            }else if(it == "*"){
+                val1 = sum.top();
+                sum.pop();
+                val2 = sum.top();
+                sum.pop();
+                calc = val2*val1;
+                sum.push(calc);
+            }else if(it == "/"){
+                val1 = sum.top();
+                sum.pop();
+                val2 = sum.top();
+                sum.pop();
+                calc = val2/val1;
+                sum.push(calc);
+            }else{
+                val1 = stoi(it);
+                sum.push(val1);
+            }
+        }
+        return sum.top();
+    }
+};
