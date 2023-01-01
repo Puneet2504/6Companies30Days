@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        int left = 0,right =0, count = 0, n = s.size()-1;
+        map<char,int> mp;
+        for(right = 0;right<=n;right++){
+            mp[s[right]]++;
+            cout<<mp.size()<<" ";
+            while(mp.size()==3){
+                count += 1+(n-right);
+                mp[s[left]]--;
+                if(mp[s[left]] == 0){
+                    mp.erase(s[left]);
+                    left++;
+                    break;
+                }
+                left++;
+                
+            }
+        }
+        return count;
+    }
+};
