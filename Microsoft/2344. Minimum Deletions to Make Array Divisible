@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, vector<int>& numsDivide) {
+        int n=numsDivide[0],index=0;
+        bool chc = true;
+        for(int i=0;i<numsDivide.size()-1;i++){
+            n = __gcd(n,numsDivide[i+1]);
+            cout<<n<<" ";
+        }
+        cout<<n<<endl;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++){
+            if(n%nums[i]==0){
+                index = i;
+                chc = false;
+                break;
+            }
+        }
+        if(chc){
+            index = -1;
+        }
+        return index;
+    }
+};
